@@ -5,6 +5,7 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^retrieve/$', 'provider.views.retrieve'),
     # Examples:
     # url(r'^$', 'subtitle_server.views.home', name='home'),
     # url(r'^subtitle_server/', include('subtitle_server.foo.urls')),

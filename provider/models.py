@@ -10,3 +10,10 @@ class Subtitle(models.Model):
     end_time = models.TimeField()
     content = models.TextField()
 
+    def to_dict(self):
+        res = {}
+        res['start_time'] = str(self.start_time)
+        res['end_time'] = str(self.end_time)
+        res['content'] = self.content
+        return res
+
