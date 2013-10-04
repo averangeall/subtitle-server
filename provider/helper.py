@@ -1,5 +1,6 @@
+import datetime
 import models
-
+import pysrt
 
 def get_video(video_id):
     videos = models.Video.objects.filter(video_id=video_id)
@@ -11,4 +12,21 @@ def get_video(video_id):
 def get_subtitles(video):
     subtitles = models.Subtitle.objects.filter(video=video)
     return [subtitle.to_dict() for subtitle in subtitles]
+
+def put_subtitles(video, fname):
+    lines = pysrt.open(fname)
+    for line in lines:
+        start_time = datetime.time(line.start.hours,
+                                   line.start.minutes,
+                                   line.start.seconds,
+                                   line.start.milliseconds * 100)
+        end_time = datetime.time(line.end.hours,
+                                 line.end.minutes,
+                                 line.end.seconds,
+                                 line.end.milliseconds * 100)
+        subtitle = models.Subtitle(video=video,
+                                   content=line.text,
+                                   start_time=start_time,
+                                   end_time=end_time)
+        subtitle.save()
 
