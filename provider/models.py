@@ -10,10 +10,16 @@ class Subtitle(models.Model):
     end_time = models.TimeField()
     content = models.TextField()
 
+    def _to_second(self, time):
+        return time.microsecond / 1000000.0 + \
+               time.second + \
+               time.minute * 60 + \
+               time.hour * 60 * 60
+
     def to_dict(self):
         res = {}
-        res['start_time'] = str(self.start_time)
-        res['end_time'] = str(self.end_time)
+        res['start_time'] = self._to_second(self.start_time)
+        res['end_time'] = self._to_second(self.end_time)
         res['content'] = self.content
         return res
 

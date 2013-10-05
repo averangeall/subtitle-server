@@ -19,11 +19,11 @@ def put_subtitles(video, fname):
         start_time = datetime.time(line.start.hours,
                                    line.start.minutes,
                                    line.start.seconds,
-                                   line.start.milliseconds * 100)
+                                   line.start.milliseconds * 1000)
         end_time = datetime.time(line.end.hours,
                                  line.end.minutes,
                                  line.end.seconds,
-                                 line.end.milliseconds * 100)
+                                 line.end.milliseconds * 1000)
         subtitle = models.Subtitle(video=video,
                                    content=line.text,
                                    start_time=start_time,
