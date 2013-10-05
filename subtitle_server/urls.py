@@ -5,6 +5,7 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^$', 'player.views.demo'),
     url(r'^retrieve/$', 'provider.views.retrieve'),
     # Examples:
     # url(r'^$', 'subtitle_server.views.home', name='home'),

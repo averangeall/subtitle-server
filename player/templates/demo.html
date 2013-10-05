@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>粉酷多字幕</title>
+        <link rel="stylesheet" type="text/css" href="{% static "css/fkd.css" %}"></link>
+    </head>
+
+    <body>
+        <div class="fkd-subtitle" data-video-id="{{ video_id }}" data-show-title="true"></div>
+    </body>
+
+    <script src="{% static "js/jquery-2.0.3.min.js" %}"></script>
+    <script src="{% static "js/swfobject.js" %}"></script>
+    <script src="{% static "js/player.js" %}"></script>
+    <script src="{% static "js/demo.js" %}"></script>
+</html>
+
+
