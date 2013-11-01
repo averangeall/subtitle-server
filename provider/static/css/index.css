@@ -13,3 +13,8 @@ h2 {
     background: #ECF0F1;
     border-radius: 6px;
 }
+
+#err-msg {
+    color: #C0392B;
+}
+

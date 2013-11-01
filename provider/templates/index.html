@@ -14,11 +14,13 @@
         <div id="content-block">
             <h2>粉酷多字幕</h2>
             <div id="login-block">
-                <form action="/login/" method="post" class="form-group"> {% csrf_token %}
+                <form action="/login/" method="post" class="form-group">
+                    {% csrf_token %}
                     <p><input type="text" name="username" class="form-control" placeholder="帳號" /></p>
                     <p><input type="password" name="password" class="form-control" placeholder="密碼" /></p>
                     <p></p>
                     <p><input type="submit" value="登入" class="btn btn-primary btn-large" /></p>
+                    <small id="err-msg">{{ err_msg }}</small>
                 </form>
             </div>
         </div>

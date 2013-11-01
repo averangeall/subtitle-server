@@ -3,19 +3,28 @@ from django.core.context_processors import csrf
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
 import helper
+import error
 
 def portal(request):
-    if 'username' in request.session:
-        return render_to_response('first.html')
+    dictt = {}
+    dictt.update(csrf(request))
+    if 'login-error' in request.session:
+        login_error = request.session['login-error']
+        del request.session['login-error']
+        dictt['err_msg'] = error.login_msg(login_error)
+        return render_to_response('index.html', dictt)
+    elif 'username' in request.session:
+        return render_to_response('first.html', dictt)
     else:
-        dictt = {}
-        dictt.update(csrf(request))
         return render_to_response('index.html', dictt)
 
 def login(request):
-    username = request.POST.get('username')
+    username = request.POST.get('username').strip()
     password = request.POST.get('password')
-    request.session['username'] = username
+    if username == '':
+        request.session['login-error'] = error.login_code('username-blank')
+    else:
+        request.session['username'] = username
     return redirect('/')
 
 def retrieve(request):

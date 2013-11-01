@@ -15,7 +15,8 @@
             <div id="url-block">
                 <p>來配上您第一篇粉酷多字幕吧!!</p>
                 <form action="/edit/" method="post" class="form-group">
-                    <input type="text" name="video-url" class="form-control" />
+                    {% csrf_token %}
+                    <input type="text" name="video-url" id="video-url" class="form-control" />
                 </form>
             </div>
         </div>
