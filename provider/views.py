@@ -2,6 +2,7 @@ import json
 from django.core.context_processors import csrf
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
+from django.contrib import auth
 import helper
 import error
 
@@ -9,11 +10,13 @@ def portal(request):
     dictt = {}
     dictt.update(csrf(request))
     if 'login-error' in request.session:
-        login_error = request.session['login-error']
+        if 'tmp-username' in request.session:
+            dictt['tmp_username'] = request.session['tmp-username']
+            del request.session['tmp-username']
+        dictt['err_msg'] = error.login_msg(request.session['login-error'])
         del request.session['login-error']
-        dictt['err_msg'] = error.login_msg(login_error)
         return render_to_response('index.html', dictt)
-    elif 'username' in request.session:
+    elif request.user.is_authenticated():
         return render_to_response('first.html', dictt)
     else:
         return render_to_response('index.html', dictt)
@@ -23,8 +26,16 @@ def login(request):
     password = request.POST.get('password')
     if username == '':
         request.session['login-error'] = error.login_code('username-blank')
+    elif password == '':
+        request.session['tmp-username'] = username
+        request.session['login-error'] = error.login_code('password-blank')
     else:
-        request.session['username'] = username
+        user = auth.authenticate(username=username, password=password)
+        if user is None:
+            request.session['tmp-username'] = username
+            request.session['login-error'] = error.login_code('invalid')
+        else:
+            auth.login(request, user)
     return redirect('/')
 
 def retrieve(request):

@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Video(models.Model):
+    owner = models.ForeignKey(User)
     video_id = models.TextField()
     title = models.TextField()
 

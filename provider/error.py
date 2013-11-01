@@ -2,6 +2,8 @@
 
 _login_errors = [
     ('username-blank', '帳號不可以空白喔'),
+    ('password-blank', '密碼不可以空白喔'),
+    ('invalid', '帳號密碼錯誤'),
 ]
 
 def login_code(name):
