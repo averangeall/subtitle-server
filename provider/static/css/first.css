@@ -2,10 +2,6 @@ body {
     background: #BDC3C7;
 }
 
-h4 {
-    text-align: center;
-}
-
 #url-block {
     width: 600px;
     margin: 100px auto;
@@ -16,5 +12,9 @@ h4 {
 
 #video-url {
     width: 500px;
+}
+
+#err-msg {
+    color: #C0392B;
 }
 

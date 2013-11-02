@@ -7,18 +7,13 @@
         <title>第一部影片 - 粉酷多字幕</title>
         <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/png">
         <link rel="stylesheet" type="text/css" href="{% static "css/flat-ui.css" %}"></link>
-        <link rel="stylesheet" type="text/css" href="{% static "css/first.css" %}"></link>
+        <link rel="stylesheet" type="text/css" href="{% static "css/edit.css" %}"></link>
     </head>
 
     <body>
         <div id="content-block">
             <div id="url-block">
-                <p>來配上您第一篇粉酷多字幕吧!!</p>
-                <form action="/create/" method="post" class="form-group">
-                    {% csrf_token %}
-                    <p><input type="text" name="video-url" id="video-url" class="form-control" /></p>
-                    <small id="err-msg">{{ err_msg }}</small>
-                </form>
+                <h2>編輯</h2>
             </div>
         </div>
     </body>

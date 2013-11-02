@@ -17,7 +17,13 @@ def portal(request):
         del request.session['login-error']
         return render_to_response('index.html', dictt)
     elif request.user.is_authenticated():
-        return render_to_response('first.html', dictt)
+        if 'create-error' in request.session:
+            dictt['err_msg'] = error.create_msg(request.session['create-error'])
+            del request.session['create-error']
+        if helper.is_new_user(request.user):
+            return render_to_response('first.html', dictt)
+        else:
+            return render_to_response('list.html', dictt)
     else:
         return render_to_response('index.html', dictt)
 
@@ -38,9 +44,19 @@ def login(request):
             auth.login(request, user)
     return redirect('/')
 
-def edit(request):
+def create(request):
     video_url = request.POST.get('video-url')
-    video_id = helper.parse_video_url(video_url)
+    video_code = helper.parse_video_url(video_url)
+    if video_code:
+        video_title = helper.retrieve_video_title(video_code)
+        video = helper.create_video(video_code, video_title, request.user)
+        return redirect('/edit/' + str(video.id))
+    else:
+        request.session['create-error'] = error.create_code('url-problem')
+        return redirect('/')
+
+def edit(request, video_id):
+    return render_to_response('edit.html')
 
 def retrieve(request):
     video_id = request.GET.get('video_id', None)
