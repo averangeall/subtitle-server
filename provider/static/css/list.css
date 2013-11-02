@@ -1,0 +1,28 @@
+body {
+    background: #BDC3C7;
+}
+
+#url-block {
+    width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    background: #ECF0F1;
+    border-radius: 6px;
+}
+
+#video-url {
+    width: 500px;
+}
+
+#err-msg {
+    color: #C0392B;
+}
+
+#list-block {
+    width: 800px;
+    margin: 70px auto;
+    padding: 20px;
+    background: #ECF0F1;
+    border-radius: 6px;
+}
+

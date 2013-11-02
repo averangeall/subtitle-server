@@ -56,3 +56,7 @@ def is_new_user(user):
     videos = models.Video.objects.filter(owner=user)
     return videos.count() == 0
 
+def get_video_list(user):
+    videos = models.Video.objects.filter(owner=user)
+    return [{'id': video.id, 'title': video.title} for video in videos]
+

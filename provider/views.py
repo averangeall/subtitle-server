@@ -23,6 +23,7 @@ def portal(request):
         if helper.is_new_user(request.user):
             return render_to_response('first.html', dictt)
         else:
+            dictt['videos'] = helper.get_video_list(request.user)
             return render_to_response('list.html', dictt)
     else:
         return render_to_response('index.html', dictt)

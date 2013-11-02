@@ -7,7 +7,8 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     url(r'^$', 'provider.views.portal'),
     url(r'^login/$', 'provider.views.login'),
-    url(r'^edit/$', 'provider.views.edit'),
+    url(r'^edit/(?P<video_id>\d+)$', 'provider.views.edit'),
+    url(r'^create/$', 'provider.views.create'),
 
     url(r'^retrieve/$', 'provider.views.retrieve'),
 
