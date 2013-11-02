@@ -1,5 +1,5 @@
 function genPlayerId(videoId) {
-    return 'fkd-youtube' + videoId;
+    return 'fkd-youtube-' + videoId;
 }
 
 function fillDisplay(display, content) {
@@ -25,12 +25,12 @@ function putVideoTitle(video, videoId, title) {
     video.append(header);
 }
 
-function putVideoBody(video, videoId) {
+function putVideoBody(video, videoId, videoCode) {
     var playerId = genPlayerId(videoId);
     var youtube = $('<div/>').attr('id', playerId);
     video.append(youtube);
     console.log(playerId);
-    swfobject.embedSWF("https://www.youtube.com/v/" + videoId + '?enablejsapi=1&playerapiid=' + playerId + '&version=3',
+    swfobject.embedSWF("https://www.youtube.com/v/" + videoCode + '?enablejsapi=1&playerapiid=' + playerId + '&version=3',
                        playerId, '640', '480', '8', null, null,
                        {allowScriptAccess: 'always'},
                        {id: playerId});
@@ -69,8 +69,9 @@ function preparePlayer() {
                 return;
             if(video.attr('data-show-title') == 'true')
                 putVideoTitle(video, videoId, res.response.title);
-            putVideoBody(video, videoId);
+            putVideoBody(video, videoId, res.response.code);
             putVideoSubtitle(video, videoId, res.response.subtitles);
         }, 'json');
     });
 }
+

@@ -7,8 +7,12 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     url(r'^$', 'provider.views.portal'),
     url(r'^login/$', 'provider.views.login'),
-    url(r'^demo/$', 'player.views.demo'),
+    url(r'^edit/$', 'provider.views.edit'),
+
     url(r'^retrieve/$', 'provider.views.retrieve'),
+
+    url(r'^demo/$', 'player.views.demo'),
+
     # Examples:
     # url(r'^$', 'subtitle_server.views.home', name='home'),
     # url(r'^subtitle_server/', include('subtitle_server.foo.urls')),

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Video(models.Model):
     owner = models.ForeignKey(User)
-    video_id = models.TextField()
+    code = models.TextField()
     title = models.TextField()
 
 class Subtitle(models.Model):

@@ -38,6 +38,10 @@ def login(request):
             auth.login(request, user)
     return redirect('/')
 
+def edit(request):
+    video_url = request.POST.get('video-url')
+    video_id = helper.parse_video_url(video_url)
+
 def retrieve(request):
     video_id = request.GET.get('video_id', None)
     video = helper.get_video(video_id)
@@ -45,6 +49,7 @@ def retrieve(request):
         return HttpResponse(json.dumps({'status': 'FAIL'}))
     subtitles = helper.get_subtitles(video)
     response = {
+        'code': video.code,
         'title': video.title,
         'subtitles': subtitles,
     }

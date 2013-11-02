@@ -3,11 +3,8 @@ import models
 import pysrt
 
 def get_video(video_id):
-    videos = models.Video.objects.filter(video_id=video_id)
-    if not videos.count():
-        return None
-    assert videos.count() == 1
-    return videos[0]
+    video = models.Video.objects.get(id=video_id)
+    return video
 
 def get_subtitles(video):
     subtitles = models.Subtitle.objects.filter(video=video)
@@ -29,4 +26,7 @@ def put_subtitles(video, fname):
                                    start_time=start_time,
                                    end_time=end_time)
         subtitle.save()
+
+def parse_video_url(video_url):
+    return 'JZJNea-l1_8'
 
