@@ -3,20 +3,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>第一部影片 - 粉酷多字幕</title>
-        <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/png">
+        <title>{{ video.title }} - 粉酷多字幕</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="{% static "css/flat-ui.css" %}"></link>
         <link rel="stylesheet" type="text/css" href="{% static "css/edit.css" %}"></link>
     </head>
 
     <body>
-        <div id="content-block">
-            <div id="url-block">
-                <h2>編輯</h2>
-            </div>
+        <div id="left">
+            <div id="panel" class="todo"></div>
         </div>
-    </body>
-</html>
 
+        <div id="right">
+            <h3>{{ video.title }}</h3>
+            <a id="publish" href="javascript: void(0);" class="btn btn-primary">發佈影片</a>
+            <div id="video" align="center"></div>
+            <table id="single-line">
+                <tr>
+                    <td>
+                        <a id="start-check" href="javascript: void(0);" class="btn btn-primary">字幕出現</a>
+                    </td>
+                    <td rowspan="2">
+                        <textarea id="input-line" disabled></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a id="end-check" href="javascript: void(0);" class="btn btn-primary">字幕不見</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="video-info" data-code="{{ video.code }}" data-id="{{ video.id }}"></div>
+    </body>
+    <script src="{% static "js/jquery-1.8.2.min.js" %}"></script>
+    <script src="{% static "js/swfobject.js" %}"></script>
+    <script src="{% static "js/edit.js" %}"></script>
+</html>
 

@@ -57,7 +57,14 @@ def create(request):
         return redirect('/')
 
 def edit(request, video_id):
-    return render_to_response('edit.html')
+    dictt = {}
+    video = helper.get_video(video_id)
+    dictt['video'] = {
+        'id': video.id,
+        'code': video.code,
+        'title': video.title,
+    }
+    return render_to_response('edit.html', dictt)
 
 def retrieve(request):
     video_id = request.GET.get('video_id', None)
