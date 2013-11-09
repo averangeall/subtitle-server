@@ -10,6 +10,11 @@ _create_errors = [
     ('url-problem', '請輸入完整的 Youtube 連結'),
 ]
 
+_upload_subt_errors = [
+    ('no-file', '請選擇字幕檔案'),
+    ('bad-encoding', '字幕檔案的編碼怎麼怪怪的'),
+]
+
 def _get_code(name, errors):
     for i, error in enumerate(errors):
         if error[0] == name:
@@ -26,4 +31,7 @@ login_msg = lambda code: _get_msg(code, _login_errors)
 
 create_code = lambda name: _get_code(name, _create_errors)
 create_msg = lambda code: _get_msg(code, _create_errors)
+
+upload_subt_code = lambda name: _get_code(name, _upload_subt_errors)
+upload_subt_msg = lambda code: _get_msg(code, _upload_subt_errors)
 

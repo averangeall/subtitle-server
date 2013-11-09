@@ -14,11 +14,14 @@
             <div id="panel" class="todo">
                 <ul id="all-lines"></ul>
                 <ul id="add-line"></ul>
-                <div id="import-lines"></div>
-                <form id="upload-lines" action="/upload-subt/" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="hidden" name="video-id" value="{{ video.id}}" />
-                </form>
+                <div id="import-lines">
+                    <div id="import-promt"></div>
+                    <small id="err-msg">{{ err_msg }}</small>
+                    <form id="upload-lines" action="/upload-subt/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="video-id" value="{{ video.id}}" />
+                    </form>
+                </div>
             </div>
         </div>
 

@@ -39,6 +39,9 @@ def edit(request, video_id):
         'code': video.code,
         'title': video.title,
     }
+    if 'upload-subt-error' in request.session:
+        dictt['err_msg'] = error.upload_subt_msg(request.session['upload-subt-error'])
+        del request.session['upload-subt-error']
     return render_to_response('edit.html', dictt)
 
 def login(request):
@@ -77,6 +80,9 @@ def upload_subt(request):
     if request.method != 'POST' or not request.user.is_authenticated():
         return redirect('/')
     video_id = request.POST.get('video-id', None)
+    if 'subt-file' not in request.FILES:
+        request.session['upload-subt-error'] = error.upload_subt_code('no-file')
+        return redirect('/edit/' + video_id)
     subt_file = request.FILES['subt-file']
     subt_str = subt_file.read().decode('utf-8')
     video = helper.get_video(video_id)

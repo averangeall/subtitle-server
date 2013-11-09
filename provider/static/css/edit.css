@@ -8,6 +8,11 @@ a, input[type=submit] {
     cursor: pointer;
 }
 
+#err-msg {
+    margin: 10px;
+    color: #C0392B;
+}
+
 #left {
     float: left;
     margin-left: 40px;
@@ -50,7 +55,7 @@ a, input[type=submit] {
     margin: 20px;
 }
 
-#import-lines, #upload-lines {
+#import-lines {
     text-align: center;
     margin-top: 200px;
     display: none;
