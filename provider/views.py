@@ -84,7 +84,15 @@ def upload_subt(request):
         request.session['upload-subt-error'] = error.upload_subt_code('no-file')
         return redirect('/edit/' + video_id)
     subt_file = request.FILES['subt-file']
-    subt_str = subt_file.read().decode('utf-8')
+    subt_str = subt_file.read()
+    try:
+        subt_str = subt_str.decode('utf8')
+    except:
+        try:
+            subt_str = subt_str.decode('big5')
+        except:
+            request.session['upload-subt-error'] = error.upload_subt_code('bad-encoding')
+            return redirect('/edit/' + video_id)
     video = helper.get_video(video_id)
     helper.put_subtitles(video, subt_str)
     return redirect('/edit/' + video_id)
