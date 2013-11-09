@@ -17,7 +17,7 @@
                 <p>來配上您第一篇粉酷多字幕吧!!</p>
                 <form action="/create/" method="post" class="form-group">
                     {% csrf_token %}
-                    <p><input type="text" name="video-url" id="video-url" class="form-control" /></p>
+                    <p><input type="text" name="video-url" id="video-url" class="form-control" placeholder="請輸入 YouTube 網址" /></p>
                     <small id="err-msg">{{ err_msg }}</small>
                 </form>
             </div>
