@@ -18,20 +18,18 @@
                 <form id="upload-lines" action="/upload-subt/" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="hidden" name="video-id" value="{{ video.id}}" />
-                    <input type="file" id="subt-file" name="subt-file" />
-                    <input type="submit" value="上傳" />
                 </form>
             </div>
         </div>
 
         <div id="right">
             <h3>{{ video.title }}</h3>
-            <a id="publish" href="javascript: void(0);" class="btn btn-primary">發佈影片</a>
+            <a id="publish" class="btn btn-primary">發佈影片</a>
             <div id="video" align="center"></div>
             <table id="single-line">
                 <tr>
                     <td>
-                        <a id="start-check" href="javascript: void(0);" class="btn btn-primary">字幕出現</a>
+                        <a id="start-check" class="btn btn-primary">字幕出現</a>
                     </td>
                     <td rowspan="2">
                         <textarea id="input-line" disabled></textarea>
@@ -39,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <a id="end-check" href="javascript: void(0);" class="btn btn-primary">字幕不見</a>
+                        <a id="end-check" class="btn btn-primary">字幕不見</a>
                     </td>
                 </tr>
             </table>

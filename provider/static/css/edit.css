@@ -4,6 +4,10 @@ body {
     font-family: '微軟正黑體';
 }
 
+a, input[type=submit] {
+    cursor: pointer;
+}
+
 #left {
     float: left;
     margin-left: 40px;
@@ -46,8 +50,9 @@ body {
     margin: 20px;
 }
 
-#import-lines {
+#import-lines, #upload-lines {
     text-align: center;
     margin-top: 200px;
+    display: none;
 }
 

@@ -30,11 +30,26 @@ function putAddNewLine() {
 
 function putImportLines() {
     var words = $('<div/>').html('已經有字幕檔了嗎？');
-    var importt = $('<a/>').addClass('btn btn-primary')
-                           .attr('href', 'javascript: void(0);')
-                           .html('匯入字幕檔');
-    $('#import-lines').append(words)
-                      .append(importt);
+    var button = $('<a/>').addClass('btn btn-primary')
+                          .html('匯入字幕檔');
+    var importt = $('#import-lines');
+    importt.click(function() {
+        importt.fadeOut(function() {
+            var upload = $('#upload-lines');
+            var file = $('<input/>').attr('type', 'file')
+                                    .attr('name', 'subt-file');
+            var submit = $('<input/>').attr('type', 'submit')
+                                      .val('上傳')
+                                      .addClass('btn btn-primary');
+            upload.hide()
+                  .append(file)
+                  .append(submit)
+                  .fadeIn();
+        });
+    });
+    importt.append(words)
+           .append(button)
+           .show();
 }
 
 function showVideo() {

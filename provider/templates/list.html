@@ -24,7 +24,7 @@
             <div id="list-block">
                 <p>您之前的影片們</p>
                 {% for video in videos %}
-                    <p><a href="/edit/{{ video.id }}"><big>{{ video.title }}</big></a></p>
+                    <p><a href="/edit/{{ video.id }}" target="_blank"><big>{{ video.title }}</big></a></p>
                 {% endfor %}
             </div>
         </div>

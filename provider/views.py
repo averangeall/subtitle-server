@@ -28,6 +28,19 @@ def portal(request):
     else:
         return render_to_response('index.html', dictt)
 
+def edit(request, video_id):
+    if not request.user.is_authenticated():
+        return redirect('/')
+    dictt = {}
+    dictt.update(csrf(request))
+    video = helper.get_video(video_id)
+    dictt['video'] = {
+        'id': video.id,
+        'code': video.code,
+        'title': video.title,
+    }
+    return render_to_response('edit.html', dictt)
+
 def login(request):
     if request.method != 'POST':
         return redirect('/')
@@ -48,7 +61,7 @@ def login(request):
     return redirect('/')
 
 def create(request):
-    if request.method != 'POST':
+    if request.method != 'POST' or not request.user.is_authenticated():
         return redirect('/')
     video_url = request.POST.get('video-url')
     video_code = helper.parse_video_url(video_url)
@@ -60,19 +73,8 @@ def create(request):
         request.session['create-error'] = error.create_code('url-problem')
         return redirect('/')
 
-def edit(request, video_id):
-    dictt = {}
-    dictt.update(csrf(request))
-    video = helper.get_video(video_id)
-    dictt['video'] = {
-        'id': video.id,
-        'code': video.code,
-        'title': video.title,
-    }
-    return render_to_response('edit.html', dictt)
-
 def upload_subt(request):
-    if request.method != 'POST':
+    if request.method != 'POST' or not request.user.is_authenticated():
         return redirect('/')
     video_id = request.POST.get('video-id', None)
     subt_file = request.FILES['subt-file']
