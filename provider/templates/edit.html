@@ -11,7 +11,17 @@
 
     <body>
         <div id="left">
-            <div id="panel" class="todo"></div>
+            <div id="panel" class="todo">
+                <ul id="all-lines"></ul>
+                <ul id="add-line"></ul>
+                <div id="import-lines"></div>
+                <form id="upload-lines" action="/upload-subt/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="video-id" value="{{ video.id}}" />
+                    <input type="file" id="subt-file" name="subt-file" />
+                    <input type="submit" value="上傳" />
+                </form>
+            </div>
         </div>
 
         <div id="right">

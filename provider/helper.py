@@ -13,8 +13,8 @@ def get_subtitles(video):
     subtitles = models.Subtitle.objects.filter(video=video)
     return [subtitle.to_dict() for subtitle in subtitles]
 
-def put_subtitles(video, fname):
-    lines = pysrt.open(fname)
+def put_subtitles(video, subt_str):
+    lines = pysrt.from_string(subt_str)
     for line in lines:
         start_time = datetime.time(line.start.hours,
                                    line.start.minutes,

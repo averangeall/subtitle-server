@@ -29,6 +29,8 @@ def portal(request):
         return render_to_response('index.html', dictt)
 
 def login(request):
+    if request.method != 'POST':
+        return redirect('/')
     username = request.POST.get('username').strip()
     password = request.POST.get('password')
     if username == '':
@@ -46,6 +48,8 @@ def login(request):
     return redirect('/')
 
 def create(request):
+    if request.method != 'POST':
+        return redirect('/')
     video_url = request.POST.get('video-url')
     video_code = helper.parse_video_url(video_url)
     if video_code:
@@ -58,6 +62,7 @@ def create(request):
 
 def edit(request, video_id):
     dictt = {}
+    dictt.update(csrf(request))
     video = helper.get_video(video_id)
     dictt['video'] = {
         'id': video.id,
@@ -65,6 +70,16 @@ def edit(request, video_id):
         'title': video.title,
     }
     return render_to_response('edit.html', dictt)
+
+def upload_subt(request):
+    if request.method != 'POST':
+        return redirect('/')
+    video_id = request.POST.get('video-id', None)
+    subt_file = request.FILES['subt-file']
+    subt_str = subt_file.read().decode('utf-8')
+    video = helper.get_video(video_id)
+    helper.put_subtitles(video, subt_str)
+    return redirect('/edit/' + video_id)
 
 def retrieve(request):
     video_id = request.GET.get('video_id', None)
@@ -78,3 +93,4 @@ def retrieve(request):
         'subtitles': subtitles,
     }
     return HttpResponse(json.dumps({'status': 'OKAY', 'response': response}))
+

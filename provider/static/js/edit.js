@@ -1,15 +1,4 @@
-function putBlankSubts() {
-    var panel = $('#panel');
-    var lines = $('<ul/>').attr('id', 'all-lines');
-    var add = $('<ul/>').attr('id', 'add-line');
-    var others = $('<div/>').attr('id', 'panel-others');
-    panel.append(lines)
-         .append(add)
-         .append(others);
-}
-
 function putOneSubt(subt) {
-    console.log(subt);
     var startTime = $('<div/>').addClass('todo-name')
                                .html(subt.start_time);
     var endTime = $('<div/>').addClass('todo-name')
@@ -44,7 +33,7 @@ function putImportLines() {
     var importt = $('<a/>').addClass('btn btn-primary')
                            .attr('href', 'javascript: void(0);')
                            .html('匯入字幕檔');
-    $('#panel-others').append(words)
+    $('#import-lines').append(words)
                       .append(importt);
 }
 
@@ -61,7 +50,6 @@ function loadSubts() {
         if(res.status != 'OKAY')
             return;
         var subts = res.response.subtitles;
-        putBlankSubts();
         if(subts.length > 0) {
             putAllSubts(subts);
         } else {
