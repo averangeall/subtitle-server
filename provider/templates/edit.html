@@ -16,19 +16,20 @@
                 <ul id="all-lines"></ul>
                 <ul id="add-line"></ul>
                 <div id="import-lines">
-                    <div id="import-promt"></div>
+                    <div id="import-prompt"></div>
                     <small id="err-msg">{{ err_msg }}</small>
                     <form id="upload-lines" action="/upload-subt/" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="video-id" value="{{ video.id}}" />
                     </form>
                 </div>
+                <div id="publish-guide"></div>
             </div>
         </div>
 
         <div id="right">
             <h3 id="video-title" class="not-yet-show">{{ video.title }}</h3>
-            <a id="publish" class="btn btn-primary">發佈影片</a>
+            <a id="publish-btn" class="btn btn-primary">發佈影片</a>
             <div id="video" align="center"></div>
             <div id="modify-line">
                 <a id="start-check" class="btn btn-primary">字幕出現</a>

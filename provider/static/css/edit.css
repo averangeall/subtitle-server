@@ -45,7 +45,7 @@ a, input[type=submit] {
     position: relative;
 }
 
-#publish {
+#publish-btn {
     position: absolute;
     top: 40px;
     right: 65px;
@@ -68,10 +68,31 @@ a, input[type=submit] {
     height: 140px;
 }
 
+#already-subt-file-words, #choose-subt-file-words {
+    margin-top: 200px;
+}
+
 #import-lines {
     text-align: center;
-    margin-top: 200px;
-    display: none;
+}
+
+#publish-guide {
+    margin-left: 20px;
+}
+
+#embedded-words {
+    color: #ECF0F1;
+    margin-top: 219px;
+}
+
+#embedded-code {
+    width: 399px;
+    height: 100px;
+}
+
+#preview-words {
+    color: #ECF0F1;
+    margin-top: 87px;
 }
 
 .single-line {

@@ -1,3 +1,14 @@
+function genEmbeddedCode() {
+    var videoId = $('#video-info').attr('data-id');
+    var code = '<div class="fkd-subtitle" data-video-id="' + videoId + '" data-show-title="false"></div>';
+    return code;
+}
+
+function genPreviewLink() {
+    var videoId = $('#video-info').attr('data-id');
+    return 'http://disa.csie.org:2468/demo/?video_id=' + videoId;
+}
+
 function putOneSubt(subt) {
     var startTime = $('<div/>').addClass('line-start-time')
                                .html(sec2human(subt.start_time));
@@ -45,25 +56,30 @@ function putAddNewLine() {
 }
 
 function putImportLines() {
-    var words = $('<div/>').html('已經有字幕檔了嗎？');
+    var words1 = $('<div/>').attr('id', 'already-subt-file-words')
+                            .html('已經有字幕檔了嗎？');
     var button = $('<a/>').addClass('btn btn-primary')
                           .html('匯入字幕檔');
-    var importt = $('#import-promt');
+    var importt = $('#import-prompt');
     button.click(function() {
         $('#err-msg').fadeOut();
         importt.fadeOut(function() {
             var upload = $('#upload-lines');
+            var words2 = $('<div/>').attr('id', 'choose-subt-file-words')
+                                    .html('請選擇您的 .srt 字幕檔');
             var file = $('<input/>').attr('type', 'file')
                                     .attr('name', 'subt-file');
             var submit = $('<input/>').attr('type', 'submit')
                                       .val('上傳')
                                       .addClass('btn btn-primary');
-            upload.append(file)
+            upload.hide()
+                  .append(words2)
+                  .append(file)
                   .append(submit)
                   .fadeIn();
         });
     });
-    importt.append(words)
+    importt.append(words1)
            .append(button);
     $('#import-lines').show();
 }
@@ -120,9 +136,51 @@ function showTitle() {
     title.removeClass('not-yet-show');
 }
 
+function putPublish() {
+    var button = $('#publish-btn');
+    button.click(function() {
+        if(button.hasClass('btn-inverse')) {
+            button.removeClass('btn-inverse')
+                  .addClass('btn-primary');
+            $('#publish-guide').fadeOut(function() {
+                $('#all-lines').fadeIn();
+                $('#add-line').fadeIn();
+                $('#import-lines').fadeIn();
+            });
+        } else if(button.hasClass('btn-primary')) {
+            button.removeClass('btn-primary')
+                  .addClass('btn-inverse');
+            $('#all-lines').fadeOut();
+            $('#add-line').fadeOut();
+            $('#import-lines').fadeOut(function() {
+                var guide = $('#publish-guide');
+                var words1 = $('<div/>').attr('id', 'embedded-words')
+                                        .html('請把這段東西嵌入到您粉酷多的貼文裡：');
+                var embedded = $('<textarea/>').attr('id', 'embedded-code')
+                                               .attr('readonly', 'true')
+                                               .html(genEmbeddedCode());
+                var words2 = $('<div/>').attr('id', 'preview-words')
+                                        .html('或是您想要預覽看看：');
+                var preview = $('<a/>').addClass('btn btn-primary')
+                                       .attr('href', genPreviewLink())
+                                       .attr('target', '_blank')
+                                       .html('預覽影片');
+                guide.empty()
+                     .hide()
+                     .append(words1)
+                     .append(embedded)
+                     .append(words2)
+                     .append(preview)
+                     .fadeIn();
+            });
+        }
+    });
+}
+
 (function() {
     showVideo();
     loadSubts();
     showTitle();
+    putPublish();
 })();
 
