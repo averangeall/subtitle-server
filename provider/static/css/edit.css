@@ -32,9 +32,8 @@ a, input[type=submit] {
     overflow: auto;
 }
 
-#input-line {
-    width: 530px;
-    height: 140px;
+#video-title {
+    height: 40px;
 }
 
 #video {
@@ -43,16 +42,30 @@ a, input[type=submit] {
 
 #modify-line {
     padding-top: 30px;
+    position: relative;
 }
 
 #publish {
     position: absolute;
     top: 40px;
-    right: 40px;
+    right: 65px;
 }
 
-#start-check, #end-check {
-    margin: 20px;
+#start-check {
+    position: absolute;
+    top: 55px;
+}
+
+#end-check {
+    position: absolute;
+    top: 122px;
+}
+
+#input-line {
+    position: absolute;
+    left: 122px;
+    right: 10px;
+    height: 140px;
 }
 
 #import-lines {
@@ -88,4 +101,7 @@ a, input[type=submit] {
     left: 99px;
 }
 
+.not-yet-show {
+    opacity: 0;
+}
 

@@ -70,8 +70,24 @@ function putImportLines() {
 
 function showVideo() {
     var videoCode = $('#video-info').attr('data-code');
+
+    var width1 = $(window).width() - 600;
+    var height1 = width1 * 3.0 / 4.0;
+
+    var height2 = $(window).height() - 358;
+    var width2 = height2 * 4.0 / 3.0;
+
+    var width, height;
+    if(height1 <= height2) {
+        width = width1;
+        height = height1;
+    } else if(width2 <= width1) {
+        width = width2;
+        height = height2;
+    }
+
     swfobject.embedSWF('http://www.youtube.com/v/' + videoCode + '?enablejsapi=1&playerapiid=video&version=3',
-                       'video', "700", "500", "8", null, null, 
+                       'video', String(width), String(height), '8', null, null, 
                        {allowScriptAccess: "always"}, {id: 'video'});
 }
 
@@ -91,8 +107,22 @@ function loadSubts() {
     }, 'json');
 }
 
+function showTitle() {
+    var title = $('#video-title');
+    var maxWidth = $(window).width() - 700;
+    var fontSize = 40;
+    title.css('font-size', fontSize + 'px');
+    while(title.width() > maxWidth) {
+        fontSize -= 1;
+        title.css('font-size', fontSize + 'px');
+    }
+    console.log(title.width() + ', ' + maxWidth);
+    title.removeClass('not-yet-show');
+}
+
 (function() {
     showVideo();
     loadSubts();
+    showTitle();
 })();
 

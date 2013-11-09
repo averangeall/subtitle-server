@@ -26,24 +26,14 @@
         </div>
 
         <div id="right">
-            <h3>{{ video.title }}</h3>
+            <h3 id="video-title" class="not-yet-show">{{ video.title }}</h3>
             <a id="publish" class="btn btn-primary">發佈影片</a>
             <div id="video" align="center"></div>
-            <table id="modify-line">
-                <tr>
-                    <td>
-                        <a id="start-check" class="btn btn-primary">字幕出現</a>
-                    </td>
-                    <td rowspan="2">
-                        <textarea id="input-line" disabled></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a id="end-check" class="btn btn-primary">字幕不見</a>
-                    </td>
-                </tr>
-            </table>
+            <div id="modify-line">
+                <a id="start-check" class="btn btn-primary">字幕出現</a>
+                <a id="end-check" class="btn btn-primary">字幕不見</a>
+                <textarea id="input-line" disabled></textarea>
+            </div>
         </div>
         <div id="video-info" data-code="{{ video.code }}" data-id="{{ video.id }}"></div>
     </body>
