@@ -1,13 +1,17 @@
 function putOneSubt(subt) {
-    var startTime = $('<div/>').addClass('todo-name')
-                               .html(subt.start_time);
-    var endTime = $('<div/>').addClass('todo-name')
-                             .html(subt.end_time);
-    var line = $('<big/>').addClass('todo-name')
+    var startTime = $('<div/>').addClass('line-start-time')
+                               .html(sec2human(subt.start_time));
+    var endTime = $('<div/>').addClass('line-end-time')
+                             .html(sec2human(subt.end_time));
+    var text = $('<big/>').addClass('line-text todo-name')
                           .html(subt.content);
-    var one = $('<li/>').append(startTime)
+    var toTime = $('<div/>').addClass('line-to-time')
+                            .html('|');
+    var one = $('<li/>').addClass('single-line')
+                        .append(startTime)
+                        .append(toTime)
                         .append(endTime)
-                        .append(line);
+                        .append(text);
     $('#all-lines').prepend(one);
 }
 
@@ -17,12 +21,24 @@ function putAllSubts(subts) {
     });
 }
 
+function sec2human(seconds) {
+    var date = new Date(seconds * 1000.0);
+    var mm = date.getMinutes();
+    var ss = date.getSeconds();
+    var ii = date.getMilliseconds();
+    mm = ((mm < 10) ? '0' : '') + mm;
+    ss = ((ss < 10) ? '0' : '') + ss;
+    ii = ((ii < 10) ? '00' : ((ii < 100) ? '0' : '')) + ii;
+    return (mm + ':' + ss + '.' + ii);
+}
+
 function putAddNewLine() {
     var plus = $('<big/>').addClass('todo-name')
                           .addClass('fui-plus');
     var words = $('<big/>').addClass('todo-name')
                            .html('新增一句');
-    var add = $('<li/>').append(plus)
+    var add = $('<li/>').addClass('todo-done')
+                        .append(plus)
                         .append(' ')
                         .append(words);
     $('#add-line').append(add);
@@ -67,6 +83,7 @@ function loadSubts() {
         var subts = res.response.subtitles;
         if(subts.length > 0) {
             putAllSubts(subts);
+            putAddNewLine();
         } else {
             putAddNewLine();
             putImportLines();

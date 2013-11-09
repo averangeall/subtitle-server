@@ -41,7 +41,7 @@ a, input[type=submit] {
     text-align: center;
 }
 
-#single-line {
+#modify-line {
     padding-top: 30px;
 }
 
@@ -60,4 +60,32 @@ a, input[type=submit] {
     margin-top: 200px;
     display: none;
 }
+
+.single-line {
+    position: relative;
+    height: 49px;
+}
+
+.line-start-time {
+    position: absolute;
+    top: 15px;
+}
+
+.line-to-time {
+    position: absolute;
+    left: 49px;
+    top: 35px;
+}
+
+.line-end-time {
+    position: absolute;
+    top: 58px;
+}
+
+.line-text {
+    position: absolute;
+    top: 30px;
+    left: 99px;
+}
+
 
