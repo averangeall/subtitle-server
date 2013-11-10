@@ -1,0 +1,128 @@
+body {
+    background: #BDC3C7;
+    overflow: hidden;
+    font-family: '微軟正黑體';
+}
+
+a, input[type=submit] {
+    cursor: pointer;
+}
+
+#err-msg {
+    margin: 10px;
+    color: #C0392B;
+}
+
+#left {
+    float: left;
+    margin-left: 40px;
+    height: 100%;
+}
+
+#right {
+    float: left;
+    margin-left: 530px;
+}
+
+#panel {
+    position: absolute;
+    width: 450px;
+    top: 40px;
+    bottom: 20px;
+    overflow: auto;
+}
+
+#video-title {
+    height: 40px;
+}
+
+#video {
+    text-align: center;
+}
+
+#modify-line {
+    padding-top: 30px;
+    position: relative;
+}
+
+#publish-btn {
+    position: absolute;
+    top: 40px;
+    right: 65px;
+}
+
+#start-check {
+    position: absolute;
+    top: 55px;
+}
+
+#end-check {
+    position: absolute;
+    top: 122px;
+}
+
+#input-line {
+    position: absolute;
+    left: 122px;
+    right: 10px;
+    height: 140px;
+}
+
+#already-subt-file-words, #choose-subt-file-words {
+    margin-top: 200px;
+}
+
+#import-lines {
+    text-align: center;
+}
+
+#publish-guide {
+    margin-left: 20px;
+}
+
+#embedded-words {
+    color: #ECF0F1;
+    margin-top: 219px;
+}
+
+#embedded-code {
+    width: 399px;
+    height: 100px;
+}
+
+#preview-words {
+    color: #ECF0F1;
+    margin-top: 87px;
+}
+
+.single-line {
+    position: relative;
+    height: 49px;
+}
+
+.line-start-time {
+    position: absolute;
+    top: 15px;
+}
+
+.line-to-time {
+    position: absolute;
+    left: 49px;
+    top: 35px;
+}
+
+.line-end-time {
+    position: absolute;
+    top: 58px;
+}
+
+.line-text {
+    position: absolute;
+    top: 30px;
+    left: 99px;
+}
+
+.not-yet-show {
+    opacity: 0;
+}
+

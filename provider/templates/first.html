@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>第一部影片 - 粉酷多字幕</title>
+        <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/png">
+        <link rel="stylesheet" type="text/css" href="{% static "css/flat-ui.css" %}"></link>
+        <link rel="stylesheet" type="text/css" href="{% static "css/first.css" %}"></link>
+    </head>
+
+    <body>
+        <div id="content-block">
+            <h2>粉酷多字幕</h2>
+            <div id="url-block">
+                <p>來配上您第一篇粉酷多字幕吧!!</p>
+                <form action="/create/" method="post" class="form-group">
+                    {% csrf_token %}
+                    <p><input type="text" name="video-url" id="video-url" class="form-control" placeholder="請輸入 YouTube 網址" /></p>
+                    <small id="err-msg">{{ err_msg }}</small>
+                </form>
+            </div>
+        </div>
+    </body>
+    <script src="{% static "js/focus-url.js" %}"></script>
+</html>
+

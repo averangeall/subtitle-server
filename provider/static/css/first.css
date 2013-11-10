@@ -1,0 +1,24 @@
+body {
+    background: #BDC3C7;
+}
+
+h2 {
+    text-align: center;
+}
+
+#url-block {
+    width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ECF0F1;
+    border-radius: 6px;
+}
+
+#video-url {
+    width: 500px;
+}
+
+#err-msg {
+    color: #C0392B;
+}
+

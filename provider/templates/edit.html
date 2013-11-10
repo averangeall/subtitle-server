@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ video.title }} - 粉酷多字幕</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/png">
+        <link rel="stylesheet" type="text/css" href="{% static "css/flat-ui.css" %}"></link>
+        <link rel="stylesheet" type="text/css" href="{% static "css/edit.css" %}"></link>
+    </head>
+
+    <body>
+        <div id="left">
+            <div id="panel" class="todo">
+                <ul id="all-lines"></ul>
+                <ul id="add-line"></ul>
+                <div id="import-lines">
+                    <div id="import-prompt"></div>
+                    <small id="err-msg">{{ err_msg }}</small>
+                    <form id="upload-lines" action="/upload-subt/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="video-id" value="{{ video.id}}" />
+                    </form>
+                </div>
+                <div id="publish-guide"></div>
+            </div>
+        </div>
+
+        <div id="right">
+            <h3 id="video-title" class="not-yet-show">{{ video.title }}</h3>
+            <a id="publish-btn" class="btn btn-primary">發佈影片</a>
+            <div id="video" align="center"></div>
+            <div id="modify-line">
+                <a id="start-check" class="btn btn-primary">字幕出現</a>
+                <a id="end-check" class="btn btn-primary">字幕不見</a>
+                <textarea id="input-line" disabled></textarea>
+            </div>
+        </div>
+        <div id="video-info" data-code="{{ video.code }}" data-id="{{ video.id }}"></div>
+    </body>
+    <script src="{% static "js/jquery-1.8.2.min.js" %}"></script>
+    <script src="{% static "js/swfobject.js" %}"></script>
+    <script src="{% static "js/edit.js" %}"></script>
+</html>
+
