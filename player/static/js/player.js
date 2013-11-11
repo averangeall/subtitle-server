@@ -3,20 +3,24 @@ function genPlayerId(videoId) {
 }
 
 function fillDisplay(display, content) {
-    for(var i = -1; i <= 1; ++ i)
-        for(var j = -1; j <= 1; ++ j) {
-            var line = $('<div/>').addClass('fkd-display-line')
-                                  .html(content)
-                                  .hide();
-            if(i == 0 && j == 0)
-                line.addClass('fkd-display-front');
-            else
-                line.addClass('fkd-display-back');
-            display.append(line);
-            line.css('margin-left', -line.width() / 2.0 + j)
-                .css('margin-top', i)
-                .show();
+    var lines = content.split('\n');
+    $.each(lines, function(level, line) {
+        for(var i = -1; i <= 1; ++ i) {
+            for(var j = -1; j <= 1; ++ j) {
+                var subt = $('<div/>').addClass('fkd-display-line')
+                                      .html(line)
+                                      .hide();
+                if(i == 0 && j == 0)
+                    subt.addClass('fkd-display-front');
+                else
+                    subt.addClass('fkd-display-back');
+                display.append(subt);
+                subt.css('margin-left', -subt.width() / 2.0 + j)
+                    .css('margin-top', i + level * 38)
+                    .show();
+            }
         }
+    });
 }
 
 function putVideoTitle(video, videoId, title) {
