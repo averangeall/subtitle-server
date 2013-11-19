@@ -25,3 +25,10 @@ class Subtitle(models.Model):
         res['content'] = self.content
         return res
 
+class WordPressUser(models.Model):
+    user_login = models.TextField()
+    user_pass = models.TextField()
+    user_email = models.TextField()
+
+    class Meta:
+        db_table = 'wp_users'

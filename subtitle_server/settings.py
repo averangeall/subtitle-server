@@ -13,6 +13,7 @@ import database
 
 DATABASES = {
     'default': database.default(),
+    'auth': database.auth(),
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -94,6 +95,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'provider.auth.WordPressBackend',
 )
 
 ROOT_URLCONF = 'subtitle_server.urls'
