@@ -1,0 +1,6 @@
+def static_root():
+    return '/path/to/static'
+
+def static_url():
+    return 'http://static.example.com/'
+

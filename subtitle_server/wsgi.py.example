@@ -16,7 +16,7 @@ framework.
 import os
 import sys
 
-project_path = '/home/fankudo/public_html/subtitle'
+project_path = '/path/to/project'
 if project_path not in sys.path:
     sys.path.append(project_path)
 
