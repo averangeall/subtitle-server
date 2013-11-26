@@ -89,14 +89,18 @@ def upload_subt(request):
         return redirect('/edit/' + video_id)
     subt_file = request.FILES['subt-file']
     subt_str = subt_file.read()
-    try:
-        subt_str = subt_str.decode('utf8')
-    except:
+    codings = ['utf8', 'big5', 'utf16']
+    done = False
+    for coding in codings:
         try:
-            subt_str = subt_str.decode('big5')
+            subt_str = subt_str.decode(coding)
+            done = True
+            break
         except:
-            request.session['upload-subt-error'] = error.upload_subt_code('bad-encoding')
-            return redirect('/edit/' + video_id)
+            pass
+    if not done:
+        request.session['upload-subt-error'] = error.upload_subt_code('bad-encoding')
+        return redirect('/edit/' + video_id)
     video = helper.get_video(video_id)
     helper.put_subtitles(video, subt_str)
     return redirect('/edit/' + video_id)
