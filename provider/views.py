@@ -3,6 +3,7 @@ from django.core.context_processors import csrf
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
 from django.contrib import auth
+from django.contrib.sites.models import get_current_site
 import helper
 import error
 
@@ -38,6 +39,9 @@ def edit(request, video_id):
         'id': video.id,
         'code': video.code,
         'title': video.title,
+    }
+    dictt['site'] = {
+        'domain': get_current_site(request).domain
     }
     if 'upload-subt-error' in request.session:
         dictt['err_msg'] = error.upload_subt_msg(request.session['upload-subt-error'])

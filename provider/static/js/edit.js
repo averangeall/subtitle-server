@@ -6,7 +6,8 @@ function genEmbeddedCode() {
 
 function genPreviewLink() {
     var videoId = $('#video-info').attr('data-id');
-    return 'http://disa.csie.org:2468/demo/?video_id=' + videoId;
+    var domain = $('#site-info').attr('data-domain');
+    return 'http://' + domain + '/demo/?video_id=' + videoId;
 }
 
 function putOneSubt(subt) {
