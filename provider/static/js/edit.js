@@ -24,10 +24,20 @@ function putOneSubt(subt) {
                         .append(toTime)
                         .append(endTime)
                         .append(text);
-    $('#all-lines').prepend(one);
+    $('#all-lines').append(one);
 }
 
 function putAllSubts(subts) {
+    subts.sort(function(subt1, subt2) {
+        if(subt1.start_time < subt2.start_time) {
+            return -1;
+        } else if(subt1.start_time > subt2.start_time) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
     $.each(subts, function(i, subt) {
         putOneSubt(subt);
     });
