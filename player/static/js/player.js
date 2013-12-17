@@ -24,7 +24,7 @@ function putVideoBody(video, videoId, videoCode) {
     var youtube = $('<div/>').attr('id', playerId);
     video.append(youtube);
     swfobject.embedSWF("https://www.youtube.com/v/" + videoCode + '?enablejsapi=1&playerapiid=' + playerId + '&version=3',
-                       playerId, '640', '480', '8', null, null,
+                       playerId, '682', '511', '8', null, null,
                        {allowScriptAccess: 'always'},
                        {id: playerId});
 }
