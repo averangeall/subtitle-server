@@ -1,6 +1,7 @@
 function genEmbeddedCode() {
     var videoId = $('#video-info').attr('data-id');
-    var code = '<div class="fkd-subtitle" data-video-id="' + videoId + '" data-show-title="false"></div>';
+    var domain = $('#site-info').attr('data-domain');
+    var code = '<div class="fkd-subtitle" data-video-id="' + videoId + '" data-root-url="' + domain + '" data-show-title="false"></div>';
     return code;
 }
 
