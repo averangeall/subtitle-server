@@ -30,7 +30,8 @@ function putVideoBody(video, videoId, videoCode) {
 }
 
 function putVideoSubtitle(video, videoId, subtitles) {
-    var display = $('<div/>').attr('id', 'fkd-display-' + videoId);
+    var display = $('<div/>').attr('id', 'fkd-display-' + videoId)
+                             .addClass('fkd-display');
     video.append(display);
     setInterval(function() {
         display.empty();

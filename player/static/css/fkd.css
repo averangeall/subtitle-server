@@ -1,10 +1,13 @@
 .fkd-subtitle {
     width: 640px;
     height: 590px;
+    position: relative;
 }
 
 .fkd-display {
-    position: relative;
+    position: absolute;
+    top: 485px;
+    width: 100%;
 }
 
 .fkd-display-line {
