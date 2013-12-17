@@ -120,7 +120,7 @@ function showVideo() {
 
 function loadSubts() {
     var videoId = $('#video-info').attr('data-id');
-    $.get('/retrieve', {video_id: videoId}, function(res) {
+    $.get('/retrieve?callback=?', {video_id: videoId}, function(res) {
         if(res.status != 'OKAY')
             return;
         var subts = res.response.subtitles;

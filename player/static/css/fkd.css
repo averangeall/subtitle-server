@@ -1,10 +1,6 @@
-body {
-    background-color: #1b1b1b;
-}
-
 .fkd-subtitle {
-    color: white;
-    text-align: center;
+    width: 640px;
+    height: 590px;
 }
 
 .fkd-display {
@@ -12,20 +8,10 @@ body {
 }
 
 .fkd-display-line {
-    line-height: 6px;
+    line-height: 50px;
     font-size: 30px;
+    text-align: center;
     font-family: 微軟正黑體;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-}
-
-.fkd-display-front {
     color: white;
-    z-index: 1;
 }
 
-.fkd-display-back {
-    color: black;
-    z-index: 0;
-}

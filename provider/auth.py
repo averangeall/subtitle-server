@@ -4,14 +4,17 @@ import models
 
 class WordPressBackend(object):
     def authenticate(self, username=None, password=None):
-        try:
-            person = models.WordPressUser.objects.using('auth').get(user_login=username)
-        except models.WordPressUser.DoesNotExist:
-            return None
+        use_auth = True
 
-        hasher = phpass.PasswordHash(8, True)
-        if not hasher.check_password(password, person.user_pass):
-            return None
+        if use_auth:
+            try:
+                person = models.WordPressUser.objects.using('auth').get(user_login=username)
+            except models.WordPressUser.DoesNotExist:
+                return None
+
+            hasher = phpass.PasswordHash(8, True)
+            if not hasher.check_password(password, person.user_pass):
+                return None
 
         try:
             user = User.objects.get(username=username)

@@ -106,6 +106,7 @@ def upload_subt(request):
     return redirect('/edit/' + video_id)
 
 def retrieve(request):
+    callback = request.GET.get('callback', '')
     video_id = request.GET.get('video_id', None)
     video = helper.get_video(video_id)
     if not video:
@@ -116,5 +117,6 @@ def retrieve(request):
         'title': video.title,
         'subtitles': subtitles,
     }
-    return HttpResponse(json.dumps({'status': 'OKAY', 'response': response}))
+    res = callback + '(' + json.dumps({'status': 'OKAY', 'response': response}) + ');'
+    return HttpResponse(res, mimetype='application/json')
 

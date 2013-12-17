@@ -5,21 +5,11 @@ function genPlayerId(videoId) {
 function fillDisplay(display, content) {
     var lines = content.split('\n');
     $.each(lines, function(level, line) {
-        for(var i = -1; i <= 1; ++ i) {
-            for(var j = -1; j <= 1; ++ j) {
-                var subt = $('<div/>').addClass('fkd-display-line')
-                                      .html(line)
-                                      .hide();
-                if(i == 0 && j == 0)
-                    subt.addClass('fkd-display-front');
-                else
-                    subt.addClass('fkd-display-back');
-                display.append(subt);
-                subt.css('margin-left', -subt.width() / 2.0 + j)
-                    .css('margin-top', i + level * 38)
-                    .show();
-            }
-        }
+        var subt = $('<div/>').addClass('fkd-display-line')
+                              .html(line)
+                              .hide();
+        display.append(subt);
+        subt.show();
     });
 }
 
@@ -33,7 +23,6 @@ function putVideoBody(video, videoId, videoCode) {
     var playerId = genPlayerId(videoId);
     var youtube = $('<div/>').attr('id', playerId);
     video.append(youtube);
-    console.log(playerId);
     swfobject.embedSWF("https://www.youtube.com/v/" + videoCode + '?enablejsapi=1&playerapiid=' + playerId + '&version=3',
                        playerId, '640', '480', '8', null, null,
                        {allowScriptAccess: 'always'},
@@ -41,8 +30,7 @@ function putVideoBody(video, videoId, videoCode) {
 }
 
 function putVideoSubtitle(video, videoId, subtitles) {
-    var display = $('<div/>').attr('id', 'fkd-display-' + videoId)
-                             .addClass('fkd-display');
+    var display = $('<div/>').attr('id', 'fkd-display-' + videoId);
     video.append(display);
     setInterval(function() {
         display.empty();
@@ -62,13 +50,15 @@ function putVideoSubtitle(video, videoId, subtitles) {
 function onYouTubePlayerReady(playerId) {
     var youtube = document.getElementById(playerId);
     youtube.playVideo();
+    $('.fkd-subtitle').css('background', '#1B1B1B');
 }
 
 function preparePlayer() {
     $('.fkd-subtitle').each(function() {
         var video = $(this);
         var videoId = video.attr('data-video-id');
-        $.get('/retrieve', {video_id: videoId}, function(res) {
+        var rootUrl = video.attr('data-root-url');
+        $.get('http://' + rootUrl + '/retrieve?callback=?', {video_id: videoId}, function(res) {
             if(res.status != 'OKAY')
                 return;
             if(video.attr('data-show-title') == 'true')
